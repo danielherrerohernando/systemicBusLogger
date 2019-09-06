@@ -1,0 +1,7 @@
+version: '3'
+
+services:
+  service:
+    image: ilwebshops.azurecr.io/infinitaslearning/serviceBusLogger:latest
+    container_name: serviceBusLogger
+    command: ['bash', '-c', 'tail -f /dev/null']
