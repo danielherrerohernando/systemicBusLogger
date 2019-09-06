@@ -1,3 +1,5 @@
+require('dotenv').config();
+
 process.env.SERVICE_ENV = process.env.SERVICE_ENV || 'local';
 
 const system = require('./system');
