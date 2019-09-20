@@ -1,3 +1,4 @@
+/* eslint-disable*/
 module.exports = () => {
 	const start = async ({ bus }) => {
 		// const pubMessage = { id: 'hola' };
@@ -34,6 +35,39 @@ module.exports = () => {
 			x++;
 		};
 		subscribe('particleDeleted', processDeletionMessage);
+
+		let a = 1;
+		const processDlqCreatedMessage = async message => {
+			console.log('Creation dead letter queue', a);
+			await message.complete();
+			a++;
+		};
+		bus.processDlq('particleCreated', processDlqCreatedMessage);
+
+		let b = 1;
+		const processDlqDeletionMessage = async message => {
+			console.log('Deletion dead letter queue', b);
+			await message.complete();
+			b++;
+		};
+		bus.processDlq('particleDeleted', processDlqDeletionMessage);
+
+		let c = 1;
+		const processDlqUpdatedMessage = async message => {
+			console.log('Updated dead letter queue', c);
+			await message.complete();
+			c++;
+		};
+		bus.processDlq('particleUpdated', processDlqUpdatedMessage);
+
+		let d = 1;
+		const processDlqDigestedMessage = async message => {
+			console.log('Digested dead letter queue', d);
+			await message.complete();
+			d++;
+		};
+		bus.processDlq('particleDigested', processDlqDigestedMessage);
+
 
 		return {};
 	};
