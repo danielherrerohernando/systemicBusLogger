@@ -1,3 +1,3 @@
 # serviceBusLogger
 
-sth
+Setting Github actions
